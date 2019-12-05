@@ -23,9 +23,13 @@ var chartGroup = svg.append("g")
 
 //Import CSV Data
 d3.csv("assets/data/data.csv").then(function(healthData) {
+    
     // Step 1: Parse Data/Cast as numbers
     // ==============================
     healthData.forEach(function(data) {
-        console.log(data)//works.
+        // console.log(data)//works.
+        // console.log(data.abbr)//prints abbreviation
+        // console.log(data.age)//prints age
+        // console.log(data.state)
       });
 });
