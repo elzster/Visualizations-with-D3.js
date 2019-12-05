@@ -39,7 +39,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
           // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(healthData, d => d.poverty)])
+      .domain([0, d3.max(healthData, d => d.poverty)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
@@ -59,9 +59,29 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
 
     chartGroup.append("g")
       .call(leftAxis);
+
+    // Step 5: Create Circles
+    // ==============================
+    var circlesGroup = chartGroup.selectAll("circle")
+    .data(healthData)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xLinearScale(d.poverty))
+    .attr("cy", d => yLinearScale(d.healthcare))
+    .attr("r", "15")
+    .attr("fill", "pink")
+    .attr("opacity", ".5");
+    
+    // Step 6: Initialize tool tip
+    // ==============================
+    var toolTip = d3.tip()
+      .attr("class", "tooltip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.state}<br>Lacks HealthCare %: ${d.healthcare}<br>Poverty %: ${d.poverty}`);
+      });
+    // Step 7: Create tooltip in the chart
+    // ==============================
+    chartGroup.call(toolTip);
+
 });
-//Use this as example for part 1 parse.
-// hairData.forEach(function(data) {
-//     data.hair_length = +data.hair_length;
-//     data.num_hits = +data.num_hits;
-//   });
