@@ -28,8 +28,13 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     // ==============================
     healthData.forEach(function(data) {
         // console.log(data)//works.
-        // console.log(data.abbr)//prints abbreviation
-        // console.log(data.age)//prints age
-        // console.log(data.state)
-      });
+        console.log(data.state)//prints abbreviation
+        console.log(data.poverty)//prints age
+        console.log(data.healthcare)
+          });
 });
+//Use this as example for part 1 parse.
+// hairData.forEach(function(data) {
+//     data.hair_length = +data.hair_length;
+//     data.num_hits = +data.num_hits;
+//   });
