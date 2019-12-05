@@ -1,4 +1,4 @@
-// @TODO: YOUR CODE HERE!
+//Initial Setup of Chart
 var svgWidth = 960;
 var svgHeight = 500;
 
@@ -21,4 +21,11 @@ var svg = d3.select(".chart")
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-// Initial Pieces of Code
+//Import CSV Data
+d3.csv("assets/data/data.csv").then(function(healthData) {
+    // Step 1: Parse Data/Cast as numbers
+    // ==============================
+    healthData.forEach(function(data) {
+        console.log(data)//works.
+      });
+});
