@@ -28,12 +28,13 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     // ==============================
     healthData.forEach(function(data) {
         // console.log(data)//works.
-        console.log(data.state)//prints abbreviation
-        console.log(data.poverty)//prints age
-        console.log(data.healthcare)
+        // console.log(data.state)//prints abbreviation
+        // console.log(data.poverty)//prints age
+        // console.log(data.healthcare)
         data.state = data.state
-        data.poverty = +data.poverty)//prints age
+        data.poverty = +data.poverty//prints age
         data.healthcare= +data.healthcare
+        console.log(data.healthcare) //confirm INTParse
           });
 });
 //Use this as example for part 1 parse.
