@@ -13,7 +13,7 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
-var svg = d3.select(".chart")
+var svg = d3.select("div")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
@@ -34,8 +34,31 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         data.state = data.state
         data.poverty = +data.poverty//prints age
         data.healthcare= +data.healthcare
-        console.log(data.healthcare) //confirm INTParse
+        // console.log(data.healthcare) //confirm INTParse
           });
+          // Step 2: Create scale functions
+    // ==============================
+    var xLinearScale = d3.scaleLinear()
+      .domain([20, d3.max(healthData, d => d.poverty)])
+      .range([0, width]);
+
+    var yLinearScale = d3.scaleLinear()
+      .domain([0, d3.max(healthData, d => d.healthcare)])
+      .range([height, 0]);
+    
+    // Step 3: Create axis functions
+    // ==============================
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
+
+    // Step 4: Append Axes to the chart
+    // ==============================
+    chartGroup.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .call(bottomAxis);
+
+    chartGroup.append("g")
+      .call(leftAxis);
 });
 //Use this as example for part 1 parse.
 // hairData.forEach(function(data) {
