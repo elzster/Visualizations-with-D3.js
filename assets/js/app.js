@@ -89,8 +89,8 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function (d) {
-        return (`${d.state}<br>Poverty: ${d.poverty}%<br>HealthCare
-        : ${d.healthcare}%`);
+        return (`${d.state}<br>Poverty: ${d.poverty}<br>HealthCare
+        : ${d.healthcare}`);
     });
 
     // Step 7: Create tooltip in the chart
@@ -123,8 +123,6 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "20px")
       .text("Poverty % ");
   }).catch(function(error) {
     console.log(error);
