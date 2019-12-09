@@ -117,6 +117,7 @@ d3.csv("assets/data/data.csv").then( healthData => {
       .attr("class", "axisText")
       .attr("font-family", "sans-serif")
       .attr("font-size", "20px")
+      .style('stroke', 'Black')
       .text("Lacks Healthcare %");
 
       chartGroup.append("text")
@@ -124,6 +125,7 @@ d3.csv("assets/data/data.csv").then( healthData => {
       .attr("class", "axisText")
       .attr("font-family", "sans-serif")
       .attr("font-size", "20px")
+      .style('stroke', 'Black')
       .text("Poverty %");
   }).catch(function(error) {
     console.log(error);
