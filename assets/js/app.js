@@ -22,7 +22,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 //Import CSV Data
-d3.csv("assets/data/data.csv").then(function(healthData) {
+d3.csv("assets/data/data.csv").then( healthData => {
 
     // Step 1: Parse Data/Cast as numbers
     // ==============================
@@ -101,11 +101,11 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     // ==============================
     //refers to "this element"
 
-    circlesGroup.on("click", function(data) {
+    circlesGroup.on("click", data => {
       toolTip.show(data, this);
     })
       // onmouseout event
-      .on("mouseout", function(data, index) {
+      .on("mouseout", (data, index) => {
         toolTip.hide(data);
       });
       // // Create axes labels
