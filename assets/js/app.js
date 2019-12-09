@@ -30,6 +30,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         data.state = data.state
         data.poverty = +data.poverty
         data.healthcare= +data.healthcare
+        data.abbr = data.abbr
         });
 
     // Step 2: Create scale functions
@@ -65,9 +66,23 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       .attr("cx", d => xLinearScale(d.poverty))
       .attr("cy", d => yLinearScale(d.healthcare))
       .attr("r", "15")
-      .attr("fill", "blue")
+      .attr("fill", "purple")
+      .style("text-anchor", "middle")
       .attr("opacity", ".85");
-    
+
+    //append text to all circles in chart.
+      var circlesGroup = chartGroup.selectAll()
+      .data(healthData)
+      .enter()
+      .append("text")
+      .attr("x", d => xLinearScale(d.poverty))
+      .attr("y", d => yLinearScale(d.healthcare))
+      .style("font-size", "13px")
+      .style("text-anchor", "middle")
+      .style('fill', 'white')
+      .text(d => (d.abbr))
+
+
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
@@ -94,19 +109,21 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         toolTip.hide(data);
       });
 
-      // Create axes labels
+      // // Create axes labels
       chartGroup.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left + 40)
-      .attr("x", 0 - (height / 2))
+      .attr("x", -50 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("HealthCare %");
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "20px")
+      .text("Lacks Healthcare %");
 
       chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Poverty");
+      .text("Poverty % ");
   }).catch(function(error) {
     console.log(error);
   });
