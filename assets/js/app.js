@@ -71,7 +71,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       .attr("opacity", ".85");
 
     //append text to all circles in chart.
-      var circlesGroup = chartGroup.selectAll()
+    var circlesGroup = chartGroup.selectAll()
       .data(healthData)
       .enter()
       .append("text")
@@ -86,12 +86,12 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
-    .attr("class", "tooltip")
-    .offset([80, -60])
-    .html(function (d) {
-        return (`${d.state}<br>Poverty: ${d.poverty}<br>HealthCare
-        : ${d.healthcare}`);
-    });
+      .attr("class", "tooltip")
+      .offset([80, -60])
+      .html(function (d) {
+          return (`${d.state}<br>Poverty: ${d.poverty}<br>HealthCare
+          : ${d.healthcare}`);
+      });
 
     // Step 7: Create tooltip in the chart
     // ==============================
@@ -108,7 +108,6 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       .on("mouseout", function(data, index) {
         toolTip.hide(data);
       });
-
       // // Create axes labels
       chartGroup.append("text")
       .attr("transform", "rotate(-90)")
@@ -123,7 +122,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Poverty % ");
+      .text("Poverty %");
   }).catch(function(error) {
     console.log(error);
   });
