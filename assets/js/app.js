@@ -68,7 +68,7 @@ d3.csv("assets/data/data.csv").then( healthData => {
       .attr("r", "15")
       .attr("fill", "purple")
       .style("text-anchor", "middle")
-      .attr("opacity", ".75");
+      .attr("opacity", ".85");
 
     //append text to all circles in chart.
     var circlesGroup = chartGroup.selectAll()
